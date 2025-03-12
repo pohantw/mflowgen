@@ -2,7 +2,7 @@
 # Synopsys PTPX -- Generate .lib and .db
 #=========================================================================
 
-name: synopsys-ptpx-genlibdb
+name: synopsys-ptpx-genlibdb-r7cad-hack
 
 #-------------------------------------------------------------------------
 # Inputs and Outputs
@@ -24,7 +24,8 @@ outputs:
 
 commands:
   - mkdir -p logs
-  - pt_shell -file START.tcl -output_log_file logs/pt.log
+  # - pt_shell -file START.tcl -output_log_file logs/pt.log
+  - ./r7cad-genlibdb-hack.sh
   - mkdir -p outputs && cd outputs
   - ln -sf ../*.db  design.db
   - ln -sf ../*.lib design.lib
@@ -38,6 +39,7 @@ parameters:
   corner: typical
   order:
     - read_design.tcl
+    - genlibdb-constraints.tcl
     - extract_model.tcl
     - write-interface-timing.tcl
 
