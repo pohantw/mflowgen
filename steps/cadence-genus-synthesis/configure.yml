@@ -35,6 +35,9 @@ commands:
   - ln -sf ../results_syn/syn_out.sdf design.sdf
   - ln -sf ../results_syn/syn_out.spef design.spef
   - ln -sf ../name_map.rpt design.namemap
+  - find -L ./ -type f -name "*.sdc" | while read -r file; do
+  -   echo 'set_false_path -to *IN_PORT_DIODE*' >> "$file"
+  - done
 
 #-------------------------------------------------------------------------
 # Parameters
